@@ -440,6 +440,7 @@ GameObject:
   - component: {fileID: 425276905}
   - component: {fileID: 425276904}
   - component: {fileID: 425276903}
+  - component: {fileID: 425276906}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -490,7 +491,7 @@ Transform:
   m_GameObject: {fileID: 425276899}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.9124999, y: 1.0250001, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -501,7 +502,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 425276899}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -515,7 +516,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 425276899}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -529,7 +530,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 425276899}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -543,7 +544,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 425276899}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -551,6 +552,17 @@ BoxCollider2D:
   m_Offset: {x: -2.03, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.4, y: 4.4999995}
+--- !u!114 &425276906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 425276899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcfb210d13fb54da3ac6eb03b5779caf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &499119801
 GameObject:
   m_ObjectHideFlags: 1
@@ -818,6 +830,7 @@ GameObject:
   - component: {fileID: 1711036743}
   - component: {fileID: 1711036744}
   - component: {fileID: 1711036745}
+  - component: {fileID: 1711036746}
   m_Layer: 0
   m_Name: snake_head_0
   m_TagString: Untagged
@@ -866,8 +879,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1711036740}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.24651396, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -921,6 +934,17 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.215}
+--- !u!114 &1711036746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1711036740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc710610e41de4307a713d5893937460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1763504947
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,12 +953,13 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1763504948}
+  - component: {fileID: 1763504949}
   m_Layer: 0
   m_Name: Birds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1763504948
 Transform:
@@ -954,6 +979,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1763504949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1763504947}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc710610e41de4307a713d5893937460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2004176215
 GameObject:
   m_ObjectHideFlags: 0
