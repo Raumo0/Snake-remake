@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D rb2d;
 	private Vector2 direction;
 	private float turnAcceleration;
+	private bool turnLeftFlag;
+	private bool turnRightFlag;
 
 	void Start () {
 		rb2d = GetComponent<Rigidbody2D>();
@@ -32,8 +34,8 @@ public class PlayerController : MonoBehaviour {
 		winText.text = "";
 		SetCountText();
 		move = true;
-		turnLeft = false;
-		turnRight = false;
+		turnLeftFlag = false;
+		turnRightFlag = false;
 		direction = new Vector2 (1, 0);
 		turnAcceleration = .2f;
 		angle = -4.5f;
@@ -46,13 +48,20 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		turnRight = false;
-		turnLeft = false;
+		if (!turnRight)
+			turnRightFlag = false;
+		else
+			turnRightFlag = true;
+		if (!turnLeft)
+			turnLeftFlag = false;
+		else
+			turnLeftFlag = true;
+		
 		handleInput ();
-		if (turnLeft) {
+		if (turnLeftFlag) {
 			TurnLeft();
 		}
-		if (turnRight) {
+		if (turnRightFlag) {
 			TurnRight();
 		}
 	}
@@ -73,19 +82,19 @@ public class PlayerController : MonoBehaviour {
 
 	private void HandleInputPC() {
 		if (Input.GetKey(KeyCode.RightArrow)) {
-			turnRight = true;
+			turnRightFlag = true;
 		}
 		if (Input.GetKey(KeyCode.LeftArrow)) {
-			turnLeft = true;
+			turnLeftFlag = true;
 		}
 	}
 
 	private void HandleInputTouch() {
 		if (Input.touchCount > 0) {
 			if (Input.GetTouch(0).position.x > 0)
-				turnRight = true;
+				turnRightFlag = true;
 			else
-				turnLeft = true;
+				turnLeftFlag = true;
 		}
 	}
 
@@ -124,7 +133,6 @@ public class PlayerController : MonoBehaviour {
 
 	private void roundAngle(float route){
 		rb2d.rotation += route;
-		print (rb2d.rotation);
 		if (rb2d.rotation >= 360 || rb2d.rotation <= -360)
 			rb2d.rotation %= 360;
 	}
