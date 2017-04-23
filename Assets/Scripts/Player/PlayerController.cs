@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour {
 
 	private void HandleInputTouch() {
 		if (Input.touchCount > 0) {
-			if (Input.GetTouch(0).position.x > 0)
+			if (Input.GetTouch(0).position.x > GameMain.GetInstance().GetWidth() / 2)
 				turnRightFlag = true;
 			else
 				turnLeftFlag = true;

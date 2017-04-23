@@ -43,11 +43,14 @@ public class PlayerAdvance : MonoBehaviour {
 	}
 
 	private LinkedList<Rigidbody2D> GetBodies() {
+		LinkedList<Rigidbody2D> parts = new LinkedList<Rigidbody2D> ();
 		LinkedList<Rigidbody2D> bodies = new LinkedList<Rigidbody2D> ();
 		for (int i = 0; i < this.gameObject.transform.childCount; i++) {
 			if (this.gameObject.transform.GetChild (i).gameObject.CompareTag ("PlayerBody")) {
 				for (int j = 0; j < this.gameObject.transform.GetChild (i).childCount; j++) {
-					bodies.AddLast(this.gameObject.transform.GetChild(i).GetChild(j).gameObject.GetComponent<Rigidbody2D>());
+					parts = this.gameObject.transform.GetChild(i).GetChild(j).gameObject.GetComponent<PlayerBodyController>().GetParts();
+					foreach (var item in parts)
+						bodies.AddLast(item);
 				} 
 
 			}

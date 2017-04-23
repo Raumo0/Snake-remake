@@ -22,9 +22,10 @@ GameObject:
   - component: {fileID: 212575482894840220}
   - component: {fileID: 50004534196093922}
   - component: {fileID: 61142138761032098}
+  - component: {fileID: 114466099352122166}
   m_Layer: 0
   m_Name: snake_body
-  m_TagString: PlayerBody
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,6 +77,17 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.198}
+--- !u!114 &114466099352122166
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1026695830344190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92703aa3c576142db9637f8e15ccb5ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212575482894840220
 SpriteRenderer:
   m_ObjectHideFlags: 1

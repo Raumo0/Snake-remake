@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Bird
   - PlayerBody
+  - PlayerHead
+  - PlayerTail
   layers:
   - Default
   - TransparentFX
