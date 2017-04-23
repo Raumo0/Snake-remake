@@ -17,7 +17,8 @@ public class ViciousWorldForChilds : MonoBehaviour {
 		right = GameMain.GetInstance().GetRightBorder();
 
 		for (int i = 0; i < this.gameObject.transform.childCount; i++) {
-			if (!this.gameObject.transform.GetChild (i).gameObject.activeSelf)
+			if (!this.gameObject.transform.GetChild (i).gameObject.activeSelf ||
+				this.gameObject.transform.GetChild(i).gameObject.GetComponent<Rigidbody2D>() == null)
 				continue;
 			rb2d = this.gameObject.transform.GetChild(i).gameObject.GetComponent<Rigidbody2D>();
 			if (rb2d.position.x > right) {
