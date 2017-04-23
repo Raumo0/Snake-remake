@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D rb2d;
 	private Vector2 direction;
 	private float turnAcceleration;
-	private float rotation;
 
 	void Start () {
 		rb2d = GetComponent<Rigidbody2D>();
@@ -73,10 +72,10 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void HandleInputPC() {
-		if (Input.GetKeyDown(KeyCode.RightArrow)) {
+		if (Input.GetKey(KeyCode.RightArrow)) {
 			turnRight = true;
 		}
-		if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+		if (Input.GetKey(KeyCode.LeftArrow)) {
 			turnLeft = true;
 		}
 	}
@@ -124,9 +123,10 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void roundAngle(float route){
-		rotation += route;
-		if (rotation >= 360 || rotation <= -360)
-			rotation %= 360;
+		rb2d.rotation += route;
+		print (rb2d.rotation);
+		if (rb2d.rotation >= 360 || rb2d.rotation <= -360)
+			rb2d.rotation %= 360;
 	}
 
 	public void diveChange(){
