@@ -67,6 +67,18 @@ public class GameMain {
 		return GetTopLeft ().y;
 	}
 
+	public T GetByIndex<T> (LinkedList<T> list, int index){
+		if (list == null || list.Count == 0 || index < 0 || index >= list.Count)
+			return default(T);
+		int i = 0;
+		foreach (var value in list) {
+			if (i == index)
+				return value;
+			i++;
+		}
+		return default(T);
+	}
+
 	private static class SingletonHolder{
 		public static readonly GameMain INSTANCE = new GameMain();
 	}

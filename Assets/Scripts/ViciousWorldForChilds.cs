@@ -10,12 +10,6 @@ public class ViciousWorldForChilds : MonoBehaviour {
 	private float left;
 	private float right;
 
-	public Transform meeple;
-	public GameObject grandChild;
-
-	void Start () {
-	}
-
 	void Update () {
 		bottom = GameMain.GetInstance().GetBottomBorder();
 		top = GameMain.GetInstance().GetTopBorder();
@@ -23,6 +17,8 @@ public class ViciousWorldForChilds : MonoBehaviour {
 		right = GameMain.GetInstance().GetRightBorder();
 
 		for (int i = 0; i < this.gameObject.transform.childCount; i++) {
+			if (!this.gameObject.transform.GetChild (i).gameObject.activeSelf)
+				continue;
 			rb2d = this.gameObject.transform.GetChild(i).gameObject.GetComponent<Rigidbody2D>();
 			if (rb2d.position.x > right) {
 				temp = rb2d.position;
