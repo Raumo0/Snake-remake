@@ -1518,7 +1518,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.03
-  angle: 0
+  angle: -4.5
+  turnAcceleration: 0.15
   move: 1
   turnLeft: 0
   turnRight: 0

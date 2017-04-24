@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField]
 	private float angle;
 	[SerializeField]
+	public float turnAcceleration;
+	[SerializeField]
 	private bool move;
 	[SerializeField]
 	private bool turnLeft;
@@ -24,7 +26,6 @@ public class PlayerController : MonoBehaviour {
 	private int count;
     private Rigidbody2D rb2d;
 	private Vector2 direction;
-	private float turnAcceleration;
 	private bool turnLeftFlag;
 	private bool turnRightFlag;
 
@@ -37,8 +38,15 @@ public class PlayerController : MonoBehaviour {
 		turnLeftFlag = false;
 		turnRightFlag = false;
 		direction = new Vector2 (1, 0);
-		turnAcceleration = .2f;
-		angle = -4.5f;
+	}
+
+	void Awake() {
+		if (angle == 0f)
+			angle = -4.5f;
+		if (speed == 0f)
+			speed = 0.03f;
+		if (turnAcceleration == 0f)
+			turnAcceleration = .1f;
 	}
 
 	void Update () {
