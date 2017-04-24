@@ -24,6 +24,8 @@ public class PlayerBodyController : MonoBehaviour {
 
 	public LinkedList<Entity> GetParts(){
 		Entity entity;
+		if (parts == null || parts.Count == 0)
+			return null;
 		if (parentPB.distance > parts.Count - 1) {
 			for (int i = parts.Count - 1; i < parentPB.distance; i++) {
 				entity = new Entity (rb2d.position, rb2d.rotation, 0, false);

@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BackgroundController : MonoBehaviour {
-	void Start () {
-		
-	}
-
 	void Update () {
 		Vector2 sprite_size = GetComponent<SpriteRenderer>().sprite.rect.size;
 		Vector2 local_sprite_size = sprite_size / GetComponent<SpriteRenderer>().sprite.pixelsPerUnit;

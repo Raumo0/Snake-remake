@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAdvance : MonoBehaviour {
-	void Start () {
-		
-	}
-
 	void Update () {
 		LinkedList<Entity> children = new LinkedList<Entity> ();
 		Entity head = GetHead();
@@ -48,6 +44,8 @@ public class PlayerAdvance : MonoBehaviour {
 				for (int j = 0; j < this.gameObject.transform.GetChild (i).childCount; j++) {
 					parts = this.gameObject.transform.GetChild(i).GetChild(j).
 						gameObject.GetComponent<PlayerBodyController>().GetParts();
+					if (parts == null)
+						continue;
 					foreach (var item in parts)
 						bodies.AddLast(item);
 				} 
@@ -68,11 +66,6 @@ public class PlayerAdvance : MonoBehaviour {
 				return entity;
 			}
 		}
-		return null;
-	}
-
-	private Entity GetTail() {
-		//todo
 		return null;
 	}
 }

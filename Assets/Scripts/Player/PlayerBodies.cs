@@ -5,10 +5,8 @@ using UnityEngine;
 public class PlayerBodies : MonoBehaviour {
 	public int distance;
 
-	void Start () {
-		distance = 5;
-	}
-
-	void Update () {
+	void Awake() {
+		if (distance == 0)
+			distance = 5;
 	}
 }

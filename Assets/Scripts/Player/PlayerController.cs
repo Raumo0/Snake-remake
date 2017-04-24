@@ -31,10 +31,11 @@ public class PlayerController : MonoBehaviour {
 
 	void Start () {
 		rb2d = GetComponent<Rigidbody2D>();
+		//trash-begin
 		count = 0;
 		winText.text = "";
 		SetCountText();
-		move = true;
+		//trash-end
 		turnLeftFlag = false;
 		turnRightFlag = false;
 		direction = new Vector2 (1, 0);
@@ -47,6 +48,7 @@ public class PlayerController : MonoBehaviour {
 			speed = 0.03f;
 		if (turnAcceleration == 0f)
 			turnAcceleration = .1f;
+		move = true;
 	}
 
 	void Update () {
