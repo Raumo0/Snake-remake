@@ -585,6 +585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92703aa3c576142db9637f8e15ccb5ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb2d: {fileID: 0}
 --- !u!4 &372491415 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4284887550688178, guid: c0c6c98238a56486780570aa1955061d,
@@ -921,7 +922,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1085458219
 Transform:
   m_ObjectHideFlags: 0
@@ -995,7 +996,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1231835286}
-  - component: {fileID: 1231835287}
   - component: {fileID: 1231835288}
   m_Layer: 0
   m_Name: Snake
@@ -1019,17 +1019,6 @@ Transform:
   m_Father: {fileID: 696043010}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1231835287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1231835285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c599303ddd0af4b98aae1ef63c737d9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1231835288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1041,6 +1030,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e33b2b836ff743eb833a656b7f5f56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0.2
+  angle: -4.5
+  turnAcceleration: 0.1
+  move: 1
+  turnLeft: 0
+  turnRight: 0
 --- !u!1001 &1241716127
 Prefab:
   m_ObjectHideFlags: 0
@@ -1603,15 +1598,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e33063e5f26b64bb9a36122117b24b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.03
-  angle: -4.5
-  turnAcceleration: 0.5
-  move: 1
-  turnLeft: 0
-  turnRight: 0
+  rb2d: {fileID: 0}
   dive: 0
-  countText: {fileID: 1343758583}
-  winText: {fileID: 2004176217}
 --- !u!50 &1711036744
 Rigidbody2D:
   serializedVersion: 4
@@ -1700,7 +1688,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1763504948}
-  - component: {fileID: 1763504950}
   m_Layer: 0
   m_Name: Birds
   m_TagString: Untagged
@@ -1726,17 +1713,6 @@ Transform:
   m_Father: {fileID: 1085458219}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1763504950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1763504947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c599303ddd0af4b98aae1ef63c737d9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1783571173
 Prefab:
   m_ObjectHideFlags: 0

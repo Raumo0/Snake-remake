@@ -14,4 +14,17 @@ public class Entity {
 		this.scale = scale;
 		this.dive = dive;
 	}
+
+	public Entity GetClone(Entity entity) {
+		if (entity == null)
+			entity = new Entity (new Vector2(), 0, 0, false);
+		if (entity.position == null)
+			entity.position = new Vector2 ();
+		entity.position.x = this.position.x;
+		entity.position.y = this.position.y;
+		entity.rotation = this.rotation;
+		entity.scale = this.scale;
+		entity.dive = this.dive;
+		return entity;
+	}
 }
