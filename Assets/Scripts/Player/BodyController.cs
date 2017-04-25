@@ -9,18 +9,33 @@ public class BodyController : PartController {
 	public override void Awake() {
 		base.Awake ();
 		parts = new LinkedList<Entity> ();
-		parts.AddLast (values);
 		parentPB = this.transform.parent.GetComponent<PlayerBodies>();
-		for (int i = 0; i < 7; i++) {
-			parts.AddLast (values.GetClone(new Entity(new Vector2(), 0, 0, false)));
+	}
+
+	protected override void FixedUpdate () {
+		base.FixedUpdate ();
+		if (parentPB.distance != parts.Count) {
+			if (parentPB.distance > parts.Count) {
+				for (int i = parts.Count; i < parentPB.distance; i++) {
+					parts.AddLast(values.GetClone (new Entity (new Vector2 (), 0, 0, false)));
+				}
+			} else if (parentPB.distance < parts.Count) {
+				for (int i = parentPB.distance; i < parts.Count; i++) {
+					parts.RemoveLast();
+				}
+			}
 		}
 	}
 
 	public override Entity Advance(Entity entity){
-		if (entity == null || entity.position == null || parts == null || parts.Count == 0)
+		if (entity == null || entity.position == null || parts == null)
 			return entity;
 		
 		Entity lastElement = values;
+		if (parts.Count == 0) {
+			values = entity;
+			return lastElement;
+		}
 		values = GameMain.GetInstance().GetByIndex(parts, parts.Count-1);
 		int len = parts.Count - 1;
 		Entity before;
