@@ -111,13 +111,33 @@ public class PlayerAdvance : MonoBehaviour {
 	}
 
 	private void HandleInputTouch() {
-		if (Input.touchCount > 0) {
-			if (Input.GetTouch(0).position.x > GameMain.GetInstance().GetWidth() / 2)
-				turnRightFlag = true;
-			else
-				turnLeftFlag = true;
-		}
-	}
+        //if (Input.touchCount > 0) {
+        //	if (Input.GetTouch(0).position.x > GameMain.GetInstance().GetWidth() / 2)
+        //		turnRightFlag = true;
+        //	else
+        //		turnLeftFlag = true;
+        //}
+
+
+        if (Input.touchCount > 0)
+        {
+            Vector3 point = Camera.main.ScreenToWorldPoint(
+            new Vector2(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y));
+            if (point.x > GameMain.GetInstance().GetWidth() / 2)
+                turnRightFlag = true;
+            else
+                turnLeftFlag = true;
+            if (Input.touchCount > 1)
+            {
+                point = Camera.main.ScreenToWorldPoint(
+                new Vector2(Input.GetTouch(1).position.x, Input.GetTouch(1).position.y));
+                if (point.x > GameMain.GetInstance().GetWidth() / 2)
+                    turnRightFlag = true;
+                else
+                    turnLeftFlag = true;
+            }
+        }
+    }
 		
 	//This function updates the text displaying the number of objects we've collected and displays our victory message if we've collected all of them.
 //	void SetCountText() {
