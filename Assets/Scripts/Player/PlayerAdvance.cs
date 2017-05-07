@@ -27,7 +27,7 @@ public class PlayerAdvance : MonoBehaviour {
 		private bool turnRightFlag;
 	private HeadController head;
 	private Transform bodies;
-	private Entity qqq;
+	private Entity entity;
 
 	protected void  Start() {
 		//trash-begin
@@ -38,7 +38,7 @@ public class PlayerAdvance : MonoBehaviour {
 		turnLeftFlag = false;
 		turnRightFlag = false;
 		direction = new Vector2 (1, 0);
-		qqq = new Entity (new Vector2(), 0f, 0f, false);
+		entity = new Entity (new Vector2(), 0f, 0f, false);
 	}
 
 	void Awake() {
@@ -60,16 +60,16 @@ public class PlayerAdvance : MonoBehaviour {
 
 	void FixedUpdate (){
 		if (move) {
-			qqq = head.values.GetClone(qqq);
-			qqq.position = head.Move (
-				qqq.position, 
+			entity = head.values.GetClone(entity);
+			entity.position = head.Move (
+				entity.position, 
 				direction, speed, 
 				turnAcceleration
 			);
 		}
 		this.AdvanceBodies (head.values);
-		qqq.position = ViciousWorldForChilds.GetInstance ().Checkout(qqq.position);
-		qqq = head.Advance (qqq);
+		entity.position = ViciousWorldForChilds.GetInstance ().Checkout(entity.position);
+		entity = head.Advance (entity);
 
 		if (!turnRight)
 			turnRightFlag = false;
@@ -111,31 +111,12 @@ public class PlayerAdvance : MonoBehaviour {
 	}
 
 	private void HandleInputTouch() {
-        //if (Input.touchCount > 0) {
-        //	if (Input.GetTouch(0).position.x > GameMain.GetInstance().GetWidth() / 2)
-        //		turnRightFlag = true;
-        //	else
-        //		turnLeftFlag = true;
-        //}
-
-
-        if (Input.touchCount > 0)
+        for (int i = 0; i < Input.touchCount; i++)
         {
-            Vector3 point = Camera.main.ScreenToWorldPoint(
-            new Vector2(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y));
-            if (point.x > GameMain.GetInstance().GetWidth() / 2)
+            Vector3 p = Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position);
+            if (p.x > GameMain.GetInstance().GetWidth() / 2)
                 turnRightFlag = true;
-            else
-                turnLeftFlag = true;
-            if (Input.touchCount > 1)
-            {
-                point = Camera.main.ScreenToWorldPoint(
-                new Vector2(Input.GetTouch(1).position.x, Input.GetTouch(1).position.y));
-                if (point.x > GameMain.GetInstance().GetWidth() / 2)
-                    turnRightFlag = true;
-                else
-                    turnLeftFlag = true;
-            }
+            else turnLeftFlag = true;
         }
     }
 		
