@@ -29,8 +29,9 @@ public class PlayerAdvance : MonoBehaviour {
     private BodyController tail;
 	private Transform bodies;
 	private Entity entity;
+    private Vector2 spriteSize;
 
-	protected void  Start() {
+    protected void  Start() {
 		//trash-begin
 //		count = 0;
 //		winText.text = "";
@@ -54,7 +55,9 @@ public class PlayerAdvance : MonoBehaviour {
 			if (this.transform.GetChild(i).gameObject.CompareTag("PlayerHead"))
             {
 				head = (HeadController)this.transform.GetChild(i).gameObject.GetComponent<HeadController>();
-			} else if (this.transform.GetChild(i).gameObject.CompareTag ("PlayerBody"))
+                spriteSize = (Vector2)this.transform.GetChild(i).gameObject.GetComponent<HeadController>().GetComponent<SpriteRenderer>().sprite.rect.size;
+                spriteSize /= this.transform.GetChild(i).gameObject.GetComponent<HeadController>().GetComponent<SpriteRenderer>().sprite.pixelsPerUnit;
+            } else if (this.transform.GetChild(i).gameObject.CompareTag ("PlayerBody"))
             {
 				bodies = this.gameObject.transform.GetChild (i);
 			} else if (this.transform.GetChild(i).gameObject.CompareTag("PlayerTail"))
@@ -75,7 +78,7 @@ public class PlayerAdvance : MonoBehaviour {
 		}
 		var variable = this.AdvanceBodies (head.values);
 	    this.AdvanceTail(variable);
-		entity.position = ViciousWorldForChilds.GetInstance ().Checkout(entity.position);
+		entity.position = ViciousWorldForChilds.GetInstance().Checkout(entity.position, spriteSize);
 		entity = head.Advance (entity);
 
 		if (!turnRight)

@@ -1606,11 +1606,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1711036742}
   - component: {fileID: 1711036741}
-  - component: {fileID: 1711036743}
   - component: {fileID: 1711036744}
   - component: {fileID: 1711036745}
+  - component: {fileID: 1711036743}
   m_Layer: 0
-  m_Name: snake_head_0
+  m_Name: snake_head
   m_TagString: PlayerHead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
