@@ -252,7 +252,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -663,10 +663,10 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 769975291
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b265f23fed6554e7c9c2423ad822f62e, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.866}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -957,7 +957,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1085458219
 Transform:
   m_ObjectHideFlags: 0
@@ -1567,6 +1567,7 @@ GameObject:
   - component: {fileID: 1711036743}
   - component: {fileID: 1711036744}
   - component: {fileID: 1711036745}
+  - component: {fileID: 1711036746}
   m_Layer: 0
   m_Name: snake_head_0
   m_TagString: PlayerHead
@@ -1639,7 +1640,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2d: {fileID: 0}
-  dive: 0
 --- !u!50 &1711036744
 Rigidbody2D:
   serializedVersion: 4
@@ -1685,6 +1685,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.215}
   m_EdgeRadius: 0
+--- !u!114 &1711036746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1711036740}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97b4836e0b2d43a49a67d0067cca0369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dive: 0
 --- !u!1001 &1737446673
 Prefab:
   m_ObjectHideFlags: 0

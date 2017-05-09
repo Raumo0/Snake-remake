@@ -4,12 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class HeadController : PartController {
-	[SerializeField]
-	private bool dive;
-
 	protected override void FixedUpdate() {
 		base.FixedUpdate ();
-	}
+    }
 
 //	//OnTriggerEnter2D is called whenever this object overlaps with a trigger collider.
 //	void OnTriggerEnter2D(Collider2D other) {
@@ -53,9 +50,5 @@ public class HeadController : PartController {
 		values.rotation += route;
 		if (values.rotation >= 360 || values.rotation <= -360)
 			values.rotation %= 360;
-	}
-
-	public void diveChange(){
-		dive = !dive;
 	}
 }

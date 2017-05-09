@@ -6,7 +6,7 @@ public class BodyController : PartController {
 	private LinkedList<Entity> parts;
 	protected PlayerBodies parentPB;
 
-	public override void Awake() {
+	protected override void Awake() {
 		base.Awake ();
 		parts = new LinkedList<Entity> ();
 		parentPB = this.transform.parent.GetComponent<PlayerBodies>();
@@ -48,16 +48,20 @@ public class BodyController : PartController {
 			part.position.x = before.position.x;
 			part.position.y = before.position.y;
 			part.rotation = before.rotation;
-			//			if (part.type == SnakePart.TextureType.tail)
-			//				part.scale = parts.get(0).scale;
-			//			else
-			//				part.scale = before.scale;
-			//			part.dive = before.dive;
+		    part.dive = before.dive;
+		    part.scale = before.scale;
+		    //			if (part.type == SnakePart.TextureType.tail)
+		    //				part.scale = parts.get(0).scale;
+		    //			else
+		    //				part.scale = before.scale;
+		    //			part.dive = before.dive;
 		}
 		Entity first = parts.First.Value;
 		first.position.x = entity.position.x;
 		first.position.y = entity.position.y;
 		first.rotation = entity.rotation;
+	    first.dive = entity.dive;
+	    first.scale = entity.scale;
 		return lastElement;
 	}
 }

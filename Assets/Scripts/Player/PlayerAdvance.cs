@@ -108,6 +108,10 @@ public class PlayerAdvance : MonoBehaviour {
 		if (Input.GetKey(KeyCode.LeftArrow)) {
 			turnLeftFlag = true;
 		}
+        if (Input.GetKeyDown(KeyCode.Space))
+	    {
+	        head.values.dive = !head.values.dive;
+	    }
 	}
 
 	private void HandleInputTouch() {

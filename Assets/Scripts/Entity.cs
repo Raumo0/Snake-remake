@@ -27,4 +27,9 @@ public class Entity {
 		entity.dive = this.dive;
 		return entity;
 	}
+
+    public void diveChange(Entity entity)
+    {
+        dive = !dive;
+    }
 }
