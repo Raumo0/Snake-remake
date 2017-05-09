@@ -26,6 +26,7 @@ public class PlayerAdvance : MonoBehaviour {
 		private bool turnLeftFlag;
 		private bool turnRightFlag;
 	private HeadController head;
+    private BodyController tail;
 	private Transform bodies;
 	private Entity entity;
 
@@ -50,10 +51,15 @@ public class PlayerAdvance : MonoBehaviour {
 			turnAcceleration = .1f;
 		move = true;
 		for (int i = 0; i < this.transform.childCount; i++) {
-			if (this.transform.GetChild(i).gameObject.CompareTag("PlayerHead")) {
+			if (this.transform.GetChild(i).gameObject.CompareTag("PlayerHead"))
+            {
 				head = (HeadController)this.transform.GetChild(i).gameObject.GetComponent<HeadController>();
-			} else if (this.transform.GetChild(i).gameObject.CompareTag ("PlayerBody")) {
+			} else if (this.transform.GetChild(i).gameObject.CompareTag ("PlayerBody"))
+            {
 				bodies = this.gameObject.transform.GetChild (i);
+			} else if (this.transform.GetChild(i).gameObject.CompareTag("PlayerTail"))
+			{
+			    tail = this.gameObject.transform.GetChild(i).gameObject.GetComponent<BodyController>();
 			}
 		}
 	}
@@ -67,7 +73,8 @@ public class PlayerAdvance : MonoBehaviour {
 				turnAcceleration
 			);
 		}
-		this.AdvanceBodies (head.values);
+		var variable = this.AdvanceBodies (head.values);
+	    this.AdvanceTail(variable);
 		entity.position = ViciousWorldForChilds.GetInstance ().Checkout(entity.position);
 		entity = head.Advance (entity);
 
@@ -95,6 +102,12 @@ public class PlayerAdvance : MonoBehaviour {
 		}
 		return entity;
 	}
+
+    private Entity AdvanceTail(Entity entity)
+    {
+        entity = tail.Advance(entity);
+        return entity;
+    }
 		
 	private void handleInput() {
 		HandleInputTouch ();

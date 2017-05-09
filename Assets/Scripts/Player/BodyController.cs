@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class BodyController : PartController {
 	private LinkedList<Entity> parts;
-	protected PlayerBodies parentPB;
+    public int distance;
 
 	protected override void Awake() {
 		base.Awake ();
 		parts = new LinkedList<Entity> ();
-		parentPB = this.transform.parent.GetComponent<PlayerBodies>();
+	    if (distance == 0)
+            distance = 5;
 	}
 
 	protected override void FixedUpdate () {
 		base.FixedUpdate ();
-		if (parentPB.distance != parts.Count) {
-			if (parentPB.distance > parts.Count) {
-				for (int i = parts.Count; i < parentPB.distance; i++) {
+		if (distance != parts.Count) {
+			if (distance > parts.Count) {
+				for (int i = parts.Count; i < distance; i++) {
 					parts.AddLast(values.GetClone (new Entity (new Vector2 (), 0, 0, false)));
 				}
-			} else if (parentPB.distance < parts.Count) {
-				for (int i = parentPB.distance; i < parts.Count; i++) {
+			} else if (distance < parts.Count) {
+				for (int i = distance; i < parts.Count; i++) {
 					parts.RemoveLast();
 				}
 			}
@@ -50,11 +51,6 @@ public class BodyController : PartController {
 			part.rotation = before.rotation;
 		    part.dive = before.dive;
 		    part.scale = before.scale;
-		    //			if (part.type == SnakePart.TextureType.tail)
-		    //				part.scale = parts.get(0).scale;
-		    //			else
-		    //				part.scale = before.scale;
-		    //			part.dive = before.dive;
 		}
 		Entity first = parts.First.Value;
 		first.position.x = entity.position.x;
