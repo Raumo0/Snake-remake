@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class BodyController : PartController {
 	private LinkedList<Entity> parts;
-	protected PlayerBodies parentPB;
+    public int distance;
 
-	public override void Awake() {
+	protected override void Awake() {
 		base.Awake ();
 		parts = new LinkedList<Entity> ();
-		parentPB = this.transform.parent.GetComponent<PlayerBodies>();
+	    if (distance == 0)
+            distance = 5;
 	}
 
 	protected override void FixedUpdate () {
 		base.FixedUpdate ();
-		if (parentPB.distance != parts.Count) {
-			if (parentPB.distance > parts.Count) {
-				for (int i = parts.Count; i < parentPB.distance; i++) {
-					parts.AddLast(values.GetClone (new Entity (new Vector2 (), 0, 0, false)));
+		if (distance != parts.Count) {
+			if (distance > parts.Count) {
+				for (int i = parts.Count; i < distance; i++) {
+					parts.AddLast(values.GetClone (new Entity (new Vector2 (), 0, new Vector2(), false)));
 				}
-			} else if (parentPB.distance < parts.Count) {
-				for (int i = parentPB.distance; i < parts.Count; i++) {
+			} else if (distance < parts.Count) {
+				for (int i = distance; i < parts.Count; i++) {
 					parts.RemoveLast();
 				}
 			}
@@ -48,16 +49,15 @@ public class BodyController : PartController {
 			part.position.x = before.position.x;
 			part.position.y = before.position.y;
 			part.rotation = before.rotation;
-			//			if (part.type == SnakePart.TextureType.tail)
-			//				part.scale = parts.get(0).scale;
-			//			else
-			//				part.scale = before.scale;
-			//			part.dive = before.dive;
+		    part.dive = before.dive;
+		    part.scale = before.scale;
 		}
 		Entity first = parts.First.Value;
 		first.position.x = entity.position.x;
 		first.position.y = entity.position.y;
 		first.rotation = entity.rotation;
+	    first.dive = entity.dive;
+	    first.scale = entity.scale;
 		return lastElement;
 	}
 }

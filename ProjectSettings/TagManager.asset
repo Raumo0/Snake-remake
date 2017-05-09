@@ -45,12 +45,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Dive_down
+    uniqueID: 1021847123
+    locked: 0
   - name: Background
     uniqueID: 769975291
     locked: 0
-  - name: Pickups
-    uniqueID: 2763144535
-    locked: 0
-  - name: Player
+  - name: Dive_up
     uniqueID: 2923191701
     locked: 0

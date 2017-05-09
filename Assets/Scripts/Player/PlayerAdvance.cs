@@ -26,10 +26,12 @@ public class PlayerAdvance : MonoBehaviour {
 		private bool turnLeftFlag;
 		private bool turnRightFlag;
 	private HeadController head;
+    private BodyController tail;
 	private Transform bodies;
-	private Entity qqq;
+	private Entity entity;
+    private Vector2 spriteSize;
 
-	protected void  Start() {
+    protected void  Start() {
 		//trash-begin
 //		count = 0;
 //		winText.text = "";
@@ -38,7 +40,7 @@ public class PlayerAdvance : MonoBehaviour {
 		turnLeftFlag = false;
 		turnRightFlag = false;
 		direction = new Vector2 (1, 0);
-		qqq = new Entity (new Vector2(), 0f, 0f, false);
+		entity = new Entity (new Vector2(), 0f, new Vector2(), false);
 	}
 
 	void Awake() {
@@ -50,26 +52,33 @@ public class PlayerAdvance : MonoBehaviour {
 			turnAcceleration = .1f;
 		move = true;
 		for (int i = 0; i < this.transform.childCount; i++) {
-			if (this.transform.GetChild(i).gameObject.CompareTag("PlayerHead")) {
+			if (this.transform.GetChild(i).gameObject.CompareTag("PlayerHead"))
+            {
 				head = (HeadController)this.transform.GetChild(i).gameObject.GetComponent<HeadController>();
-			} else if (this.transform.GetChild(i).gameObject.CompareTag ("PlayerBody")) {
+                spriteSize = (Vector2)this.transform.GetChild(i).gameObject.GetComponent<HeadController>().GetComponent<SpriteRenderer>().sprite.rect.size;
+                spriteSize /= this.transform.GetChild(i).gameObject.GetComponent<HeadController>().GetComponent<SpriteRenderer>().sprite.pixelsPerUnit;
+            } else if (this.transform.GetChild(i).gameObject.CompareTag ("PlayerBody"))
+            {
 				bodies = this.gameObject.transform.GetChild (i);
+			} else if (this.transform.GetChild(i).gameObject.CompareTag("PlayerTail"))
+			{
+			    tail = this.gameObject.transform.GetChild(i).gameObject.GetComponent<BodyController>();
 			}
 		}
 	}
 
 	void FixedUpdate (){
 		if (move) {
-			qqq = head.values.GetClone(qqq);
-			qqq.position = head.Move (
-				qqq.position, 
+		    entity = head.FillValues(entity);
+			entity.position = head.Move (
+				entity.position, 
 				direction, speed, 
 				turnAcceleration
 			);
 		}
-		this.AdvanceBodies (head.values);
-		qqq.position = ViciousWorldForChilds.GetInstance ().Checkout(qqq.position);
-		qqq = head.Advance (qqq);
+		var variable = this.AdvanceBodies (head.values);
+	    this.AdvanceTail(variable);
+		entity = head.Advance (entity);
 
 		if (!turnRight)
 			turnRightFlag = false;
@@ -95,6 +104,12 @@ public class PlayerAdvance : MonoBehaviour {
 		}
 		return entity;
 	}
+
+    private Entity AdvanceTail(Entity entity)
+    {
+        entity = tail.Advance(entity);
+        return entity;
+    }
 		
 	private void handleInput() {
 		HandleInputTouch ();
@@ -108,16 +123,21 @@ public class PlayerAdvance : MonoBehaviour {
 		if (Input.GetKey(KeyCode.LeftArrow)) {
 			turnLeftFlag = true;
 		}
+        if (Input.GetKeyDown(KeyCode.Space))
+	    {
+	        head.values.dive = !head.values.dive;
+	    }
 	}
 
 	private void HandleInputTouch() {
-		if (Input.touchCount > 0) {
-			if (Input.GetTouch(0).position.x > GameMain.GetInstance().GetWidth() / 2)
-				turnRightFlag = true;
-			else
-				turnLeftFlag = true;
-		}
-	}
+        for (int i = 0; i < Input.touchCount; i++)
+        {
+            Vector3 p = Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position);
+            if (p.x > GameMain.GetInstance().GetWidth() / 2)
+                turnRightFlag = true;
+            else turnLeftFlag = true;
+        }
+    }
 		
 	//This function updates the text displaying the number of objects we've collected and displays our victory message if we've collected all of them.
 //	void SetCountText() {

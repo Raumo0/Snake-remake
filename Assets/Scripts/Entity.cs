@@ -5,10 +5,10 @@ using UnityEngine;
 public class Entity {
 	public Vector2 position;
 	public float rotation;
-	public float scale;
+	public Vector2 scale;
 	public bool dive;
 
-	public Entity(Vector2 position, float rotation, float scale, bool dive){
+	public Entity(Vector2 position, float rotation, Vector2 scale, bool dive){
 		this.position = position;
 		this.rotation = rotation;
 		this.scale = scale;
@@ -17,7 +17,7 @@ public class Entity {
 
 	public Entity GetClone(Entity entity) {
 		if (entity == null)
-			entity = new Entity (new Vector2(), 0, 0, false);
+			entity = new Entity (new Vector2(), 0, new Vector2(), false);
 		if (entity.position == null)
 			entity.position = new Vector2 ();
 		entity.position.x = this.position.x;
@@ -27,4 +27,9 @@ public class Entity {
 		entity.dive = this.dive;
 		return entity;
 	}
+
+    public void diveChange(Entity entity)
+    {
+        dive = !dive;
+    }
 }

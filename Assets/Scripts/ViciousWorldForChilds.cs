@@ -4,40 +4,47 @@ using UnityEngine;
 
 public class ViciousWorldForChilds {
 	private Vector3 temp;
-	private float bottom;
-	private float top;
-	private float left;
-	private float right;
+    private float bottom;
+    private float top;
+    private float left;
+    private float right;
 
-	private ViciousWorldForChilds(){}
+    private ViciousWorldForChilds(){}
 
 	public static ViciousWorldForChilds GetInstance(){
 		return SingletonHolder.INSTANCE;
 	}
 
-	public Vector2 Checkout(Vector2 point){
-		bottom = GameMain.GetInstance().GetBottomBorder();
-		top = GameMain.GetInstance().GetTopBorder();
-		left = GameMain.GetInstance().GetLeftBorder();
-		right = GameMain.GetInstance().GetRightBorder();
+    private void GetCoordinates()
+    {
+        bottom = GameMain.GetInstance().GetBottomBorder();
+        top = GameMain.GetInstance().GetTopBorder();
+        left = GameMain.GetInstance().GetLeftBorder();
+        right = GameMain.GetInstance().GetRightBorder();
+    }
 
-		if (point.x > right) {
+	public Vector2 Checkout(Vector2 point, Vector2 spriteSize){
+	    GetCoordinates();
+	    float offcetX = spriteSize.x / 2;
+	    float offcetY = spriteSize.y / 2;
+
+        if (point.x > right + offcetX) {
 			temp = point;
-			temp.x = left;
+			temp.x = left - offcetX;
 			point = temp;
-		} else if (point.x < left) {
+		} else if (point.x < left - offcetX) {
 			temp = point;
-			temp.x = right;
+			temp.x = right + offcetX;
 			point = temp;
 		}
 
-		if (point.y > top) {
+		if (point.y > top + offcetY) {
 			temp = point;
-			temp.y = bottom;
+			temp.y = bottom - offcetY;
 			point = temp;
-		} else if (point.y < bottom) {
+		} else if (point.y < bottom - offcetY) {
 			temp = point;
-			temp.y = top;
+			temp.y = top + offcetY;
 			point = temp;
 		}
 		return point;
