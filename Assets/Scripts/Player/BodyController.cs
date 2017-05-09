@@ -18,7 +18,7 @@ public class BodyController : PartController {
 		if (distance != parts.Count) {
 			if (distance > parts.Count) {
 				for (int i = parts.Count; i < distance; i++) {
-					parts.AddLast(values.GetClone (new Entity (new Vector2 (), 0, 0, false)));
+					parts.AddLast(values.GetClone (new Entity (new Vector2 (), 0, new Vector2(), false)));
 				}
 			} else if (distance < parts.Count) {
 				for (int i = distance; i < parts.Count; i++) {

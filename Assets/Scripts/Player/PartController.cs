@@ -9,9 +9,15 @@ public abstract class PartController : MonoBehaviour, Advance {
 	public Rigidbody2D rb2d;
     private SpriteRenderer renderer;
 
-    protected virtual void Awake () {
-		rb2d = this.GetComponent<Rigidbody2D> ();
-		values = new Entity (rb2d.position, rb2d.rotation, 0f, false);
+    protected virtual void Awake ()
+    {
+        bool dive;
+        Vector2 scale = transform.localScale;
+		rb2d = this.GetComponent<Rigidbody2D>();
+        if (GetComponent<SpriteRenderer>().sortingLayerName == "Dive_down")
+            dive = true;
+        else dive = false;
+        values = new Entity (rb2d.position, rb2d.rotation, scale, dive);
         renderer = this.GetComponent<SpriteRenderer>();
     }
 
@@ -28,4 +34,18 @@ public abstract class PartController : MonoBehaviour, Advance {
 		values = entity;
 		return lastValue;
 	}
+
+    public Entity FillValues(Entity entity)
+    {
+        if (entity == null)
+            entity = new Entity(new Vector2(), 0, new Vector2(), false);
+        if (entity.position == null)
+            entity.position = new Vector2();
+        entity.position.x = rb2d.position.x;
+        entity.position.y = rb2d.position.y;
+        entity.rotation = rb2d.rotation;
+        entity.scale = transform.localScale;
+        entity.dive = GetComponent<SpriteRenderer>().sortingLayerName == "Dive_down";
+        return entity;
+    }
 }

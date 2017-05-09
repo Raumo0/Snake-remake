@@ -40,7 +40,7 @@ public class PlayerAdvance : MonoBehaviour {
 		turnLeftFlag = false;
 		turnRightFlag = false;
 		direction = new Vector2 (1, 0);
-		entity = new Entity (new Vector2(), 0f, 0f, false);
+		entity = new Entity (new Vector2(), 0f, new Vector2(), false);
 	}
 
 	void Awake() {
@@ -69,7 +69,7 @@ public class PlayerAdvance : MonoBehaviour {
 
 	void FixedUpdate (){
 		if (move) {
-			entity = head.values.GetClone(entity);
+		    entity = head.FillValues(entity);
 			entity.position = head.Move (
 				entity.position, 
 				direction, speed, 
@@ -78,7 +78,6 @@ public class PlayerAdvance : MonoBehaviour {
 		}
 		var variable = this.AdvanceBodies (head.values);
 	    this.AdvanceTail(variable);
-		entity.position = ViciousWorldForChilds.GetInstance().Checkout(entity.position, spriteSize);
 		entity = head.Advance (entity);
 
 		if (!turnRight)

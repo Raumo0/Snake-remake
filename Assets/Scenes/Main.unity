@@ -1609,6 +1609,7 @@ GameObject:
   - component: {fileID: 1711036744}
   - component: {fileID: 1711036745}
   - component: {fileID: 1711036743}
+  - component: {fileID: 1711036746}
   m_Layer: 0
   m_Name: snake_head
   m_TagString: PlayerHead
@@ -1726,6 +1727,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.215}
   m_EdgeRadius: 0
+--- !u!114 &1711036746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1711036740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c58e9e34cdb09e46a80f08c11eed642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offcetX: 0.4
+  offcetY: 0.4
 --- !u!1 &1763504947
 GameObject:
   m_ObjectHideFlags: 0
